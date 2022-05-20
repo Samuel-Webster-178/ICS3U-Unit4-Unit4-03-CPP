@@ -6,22 +6,35 @@
 //     with dimensions inputted from user
 
 #include <iostream>
+#include <string>
+#include <cmath>
 
 int main() {
-    // I calculate circumference of a circle
-    const double TAU = 6.28;
-    int radius;
-    double circumference;
+    // this function calculates the number with an exponent of 2
+    std::string strRepeatNumber;
+    int intRepeatNumber;
+    int counter1 = 0;
+    int product = 1;
 
     // input
-    std::cout << "Enter radius of the circle in mm: ";
-    std::cin >> radius;
-
-    // process
-    circumference = TAU*radius;
-
-    // output
+    std::cout << "Enter how many times to repeat: ";
+    std::cin >> strRepeatNumber;
     std::cout << "" << std::endl;
-    std::cout << "Circumference is " << circumference << " mm" << std::endl;
+
+    // process & output
+    try {
+        intRepeatNumber = std::stoi(strRepeatNumber);
+        if (intRepeatNumber < 0) {
+            throw std::invalid_argument("error");
+        } else {
+            for (int counter1 = 0; counter1 <= intRepeatNumber;
+            counter1++) {
+            product = pow(counter1, 2);
+            std::cout << counter1 << "² = " << product << std::endl;
+        }
+    }
+    } catch (std::invalid_argument) {
+        std::cout << "Invalid Input" << std::endl;
+    }
     std::cout << "\nDone." << std::endl;
 }
